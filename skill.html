@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio_Harish</title>
+  <style>
+    /* General body styling */
+    body {
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      flex-direction: column;
+      color: white;
+    }
+
+    /* Sidebar styling */
+    .sidebar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 100%;
+      background-color: grey;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-top: 20px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.2rem;
+      margin: 15px 0;
+      padding: 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      background-color: black;
+      color: white;
+    }
+
+    .hamburger-menu {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      z-index: 2;
+    }
+
+    .hamburger-line {
+      width: 30px;
+      height: 3px;
+      background-color: white;
+    }
+
+    /* Popup container styling */
+    .popup-container {
+      color: white;
+      text-align: center;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 40%;
+      transform: translate(-50%, -50%);
+      animation: fadeIn 1.5s forwards ease-in-out;
+      z-index: 1;
+      transition: top 1s ease, transform 1s ease;
+    }
+
+    .move-up {
+      top: 5%; /* Adjusts position to top center */
+      transform: translate(-50%, 0);
+    }
+
+    .name {
+      font-size: 4rem;
+      font-weight: bold;
+      color: white;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: smoothExpand 2s forwards ease-in-out;
+    }
+
+    .title {
+      font-size: 1.5rem;
+      color: grey;
+      margin-top: 10px;
+      opacity: 0;
+      animation: smoothExpand 2s forwards ease-in-out 0.5s;
+    }
+
+    /* Sidebar display when toggled */
+    .sidebar.open {
+      display: flex;
+    }
+
+    /* Keyframes for animations */
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes smoothExpand {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Profile Section */
+    .profile-section {
+      position: absolute;
+      top: 10%;
+      right: 1%;
+      text-align: left;
+      color: white;
+      max-width: 300px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+    }
+
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid white;
+      margin-bottom: 15px;
+    }
+
+    .profile-text {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: white;
+      margin-top: 10px;
+    }
+
+    /* About section */
+    .about-section {
+      display: none;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      border-radius: 10px;
+      margin-top: 30px;
+      width: 80%;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .about-section.visible {
+      display: block;
+    }
+
+    /* Skills section styling */
+    .skills-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 600px;
+      margin: 100px auto 10px auto;
+      animation: fadeIn 1s ease-in-out;
+      padding: 0px;
+    }
+
+    .skill-card {
+      background-color: #333;
+      padding: 10px;
+      border-radius: 8px;
+      transition: transform 0.3s, background-color 0.3s;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .skill-card:hover {
+      transform: scale(1.05);
+      background-color: #444;
+    }
+
+    .skill-card h3 {
+      font-size: 1.0rem;
+      margin-bottom: 10px;
+      color: #f1f1f1;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .skill-card p {
+      font-size: 0.5rem;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    .skill-card:hover h3 {
+      color: #00bcd4; /* Hover color for title */
+    }
+
+    /* Keyframes for animation */
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Add responsiveness */
+    @media screen and (max-width: 768px) {
+      .skills-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Sidebar button for mobile */
+    .hamburger-menu {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      z-index: 2;
+    }
+
+    .hamburger-line {
+      width: 30px;
+      height: 3px;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Hamburger menu icon -->
+  <div class="hamburger-menu" onclick="toggleSidebar()">
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="skill.html">Skills</a>
+    <a href="experience.html">Experience</a>
+    <a href="resume.html" >Resume</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- Header section with name and title -->
+  <div class="popup-container" id="popupContainer">
+    <div class="name">Skills</div>
+    <div class="title" id="title">Software Developer</div>
+  </div>
+
+  <!-- Profile section with image and text -->
+  <div class="profile-section">
+    <img src=" ./assets/pic.jpeg"class="profile-pic" alt="Profile Picture" class="profile-pic">
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+    
+    <div class="skills-list">
+      <div class="skill-card">
+        <h3>Programming and Development</h3>
+        <p>Proficient in Java programming, skilled in web development with HTML, CSS, Bootstrap, PHP, JavaScript, React, and DBMS.</p>
+      </div>
+      <div class="skill-card">
+        <h3>Cloud Computing</h3>
+        <p>Basic knowledge of AWS (Amazon Web Services).</p>
+      </div>
+      <div class="skill-card">
+        <h3>Software Development Methodologies</h3>
+        <p>Familiar with Waterfall and Agile methodologies, including practical experience with code debugging.</p>
+      </div>
+      <div class="skill-card">
+        <h3>Cybersecurity</h3>
+        <p>Experience in fraud analysis and designing secure systems.</p>
+      </div>
+      <div class="skill-card">
+        <h3>Data Science & Deep Learning</h3>
+        <p>Hands-on experience with data science and deep learning projects like pneumonia detection using Python.</p>
+      </div>
+      <div class="skill-card">
+        <h3>Hardware Integration</h3>
+        <p>Worked on hardware integration projects like Raspberry Pi.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- About section (Hidden by default) -->
+  <div class="about-section" id="aboutSection">
+    <h2>About Me</h2>
+    <p>I am a passionate software developer with experience in various technologies. I love solving problems, learning new tools, and working with people to create innovative solutions.</p>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+  const titleElement = document.getElementById("title");
+  const titles = ["Software Developer", "Web Developer", "Cloud Enthusiast"];
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let titleIndex = 0;
+
+  function toggleSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("open");
+  }
+
+  function scrambleText(element, text, duration) {
+    const interval = 40;
+    let iterations = 0;
+
+    const scrambleInterval = setInterval(() => {
+      element.style.opacity = 1;
+      element.innerText = text
+        .split(" ")
+        .map((char, index) => {
+          if (index < iterations) {
+            return text[index];
+          }
+          return characters[Math.floor(Math.random() * characters.length)];
+        })
+        .join(" ");
+
+      if (iterations >= text.length) {
+        clearInterval(scrambleInterval);
+        element.innerText = text;
+      }
+
+      iterations += 1 / (duration / interval);
+    }, interval);
+  }
+
+  function cycleTitles() {
+    titleIndex = (titleIndex + 1) % titles.length;
+    scrambleText(titleElement, titles[titleIndex], 100);
+  }
+
+  scrambleText(titleElement, titles[titleIndex], 100);
+  setInterval(cycleTitles, 5000);
+
+  setTimeout(() => {
+    document.getElementById("popupContainer").classList.add("move-up");
+  }, 3000);
+
+  // Show bio section after popup animation completes
+  setTimeout(() => {
+    document.getElementById("bioSection").classList.add("visible");
+  }, 4500); 
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+    }
+
+    window.onload = function() {
+      setTimeout(function() {
+        document.getElementById('popupContainer').classList.add('move-up');
+      }, 1500);
+    };
+  </script>
+</body>
+</html>

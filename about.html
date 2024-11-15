@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio_Harish</title>
+  <style>
+    /* General body styling */
+    body {
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      flex-direction: column;
+      color: white;
+    }
+
+    /* Sidebar styling */
+    .sidebar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 100%;
+      background-color: grey;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-top: 20px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.2rem;
+      margin: 15px 0;
+      padding: 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      background-color: black;
+      color: white;
+    }
+
+    .hamburger-menu {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      z-index: 2;
+    }
+
+    .hamburger-line {
+      width: 30px;
+      height: 3px;
+      background-color: white;
+    }
+
+    /* Popup container styling */
+    .popup-container {
+      color: white;
+      text-align: center;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 40%;
+      transform: translate(-50%, -50%);
+      animation: fadeIn 1.5s forwards ease-in-out;
+      z-index: 1;
+      transition: top 1s ease, transform 1s ease;
+    }
+
+    .move-up {
+      top: 5%; /* Adjusts position to top center */
+      transform: translate(-50%, 0);
+    }
+
+    .name {
+      font-size: 4rem;
+      font-weight: bold;
+      color: white;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: smoothExpand 2s forwards ease-in-out;
+    }
+
+    .title {
+      font-size: 1.5rem;
+      color: grey;
+      margin-top: 10px;
+      opacity: 0;
+      animation: smoothExpand 2s forwards ease-in-out 0.5s;
+    }
+
+    /* Bio Section */
+    .bio-section {
+      display: none;
+      color: white;
+      text-align: left;
+      max-width: 700px; /* Decrease the width to leave space on the right */
+      padding: 20px;
+      margin-top: 50px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      position: relative;
+      z-index: 2;
+      max-height: 400px; /* Set a max height */
+      overflow-y: auto; /* Enable vertical scrolling */
+    }
+
+    .bio-section.visible {
+      display: block;
+    }
+
+    /* Sidebar display when toggled */
+    .sidebar.open {
+      display: flex;
+    }
+
+    /* Keyframes for animations */
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes smoothExpand {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Profile Section */
+    .profile-section {
+      position: absolute;
+      top: 10%;
+      right: 3%; /* Increase margin from the right */
+      text-align: left;
+      color: white;
+      max-width: 300px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+    }
+
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid white;
+      margin-bottom: 15px;
+    }
+
+    .profile-text {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: white;
+      margin-top: 10px;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Hamburger menu icon -->
+  <div class="hamburger-menu" onclick="toggleSidebar()">
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="skill.html">Skills</a>
+    <a href="experience.html">Experience</a>
+    <a href="resume.html" >Resume</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- Header section with name and title -->
+  <div class="popup-container" id="popupContainer">
+    <div class="name">About</div>
+
+  </div>
+
+  <!-- Profile section with image and text -->
+  <div class="profile-section">
+   <img src=" ./assets/pic.jpeg"class="profile-pic" alt="Profile Picture" class="profile-pic">
+   
+  </div>
+
+  <!-- Bio section (hidden initially) -->
+  <div class="bio-section" id="bioSection">
+   <p>
+      I’m Harish, and I’ve built a solid foundation in Java programming and web development over the past few years. My journey in tech started with courses in programming through platforms like Great Learning and Internshala, where I got hands-on with various web technologies like HTML, CSS, Bootstrap, DBMS, PHP, JavaScript, and React. I’ve also explored cloud computing, focusing on AWS to understand the basics of cloud services.<br>
+    </p>
+    <p>
+      Academically, I began at St. Joseph’s School in Nellore, where I completed my 10th grade. From there, I moved to Viswasai Junior College, achieving a CGPA of 9.67 during my intermediate years. Later, I pursued a B.Tech. in Electronics and Communication Engineering at Karunya Institute of Technology and Sciences, graduating in 2023. These years of study not only gave me a firm grasp of technical skills but also prepared me for the practical challenges I’d face in the industry.<br>
+    </p>
+    <p>
+      To get more practical experience, I completed two virtual internships that were pretty pivotal for me. In November 2023, I did a Developer and Technology Job Simulation with Accenture, where I learned about software development methodologies like Waterfall and Agile, and gained some hands-on experience with code debugging. Then, in January 2024, I joined JPMorgan Chase & Co. for a Cybersecurity Job Simulation. There, I worked on analyzing large datasets related to fraud in financial payment services and helped design systems to secure sensitive information. This experience really pushed my understanding of cybersecurity and data analysis.<br>
+    </p>
+    <p>
+      I’ve also worked on some interesting projects. One that stands out is the “Automated Cultivation of Mushrooms” project I completed in September 2022. Using a Raspberry Pi, I built a system that automates mushroom cultivation, allowing me to dive into hardware integration. Another project I’m proud of was “Pneumonia Detection Using Deep Learning” in May 2023. In this project, I developed a deep learning model using Python that could detect pneumonia, which was a great way to apply my skills in data science and AI.<br>
+    </p>
+    <p>
+      Beyond tech, I’m also passionate about sports. I’ve played hockey at the national level, participating in five national tournaments and over 100 state-level competitions. My experience in sports has taught me discipline, teamwork, and resilience—traits that I bring into my professional life as well.<br>
+    </p>
+    <p>
+      Overall, I’m a tech enthusiast with a mix of practical experience, technical skills, and a strong athletic background, ready to take on new challenges in the fields of software development, cybersecurity, and technology.<br>
+    </p>
+  </div>
+
+  <script>
+    const titleElement = document.getElementById("title");
+    const titles = ["Software Developer", "Web Developer", "Cloud Enthusiast"];
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let titleIndex = 0;
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("open");
+    }
+
+    function scrambleText(element, text, duration) {
+      const interval = 40;
+      let iterations = 0;
+
+      const scrambleInterval = setInterval(() => {
+        element.style.opacity = 1;
+        element.innerText = text
+          .split(" ")
+          .map((char, index) => {
+            if (index < iterations) {
+              return text[index];
+            }
+            return characters[Math.floor(Math.random() * characters.length)];
+          })
+          .join(" ");
+
+        if (iterations >= text.length) {
+          clearInterval(scrambleInterval);
+          element.innerText = text;
+        }
+
+        iterations += 1 / (duration / interval);
+      }, interval);
+    }
+
+    function cycleTitles() {
+      titleIndex = (titleIndex + 1) % titles.length;
+      scrambleText(titleElement, titles[titleIndex], 100);
+    }
+
+    scrambleText(titleElement, titles[titleIndex], 100);
+    setInterval(cycleTitles, 5000);
+
+    setTimeout(() => {
+      document.getElementById("popupContainer").classList.add("move-up");
+    }, 3000);
+
+    // Show bio section after popup animation completes
+    setTimeout(() => {
+      document.getElementById("bioSection").classList.add("visible");
+    }, 4500); // Adjust this timing to match the end of the popup animation
+  </script>
+</body>
+</html>
