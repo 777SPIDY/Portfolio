@@ -20,36 +20,35 @@
     }
 
 
-    /* Sidebar styling */
-    .sidebar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 200px;
-      height: 100%;
-      background-color: grey;
-      display: none; /* Initially hidden */
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding-top: 20px;
-      transition: transform 0.3s ease-in-out;
-    }
+  .sidebar {
+  position: absolute;
+  top: -130px; /* Adjust this value as needed to move content up */
+  left: 0;
+  width: 200px;
+  height: 100%;
+  background-color: black ;
+  display: none; /* Initially hidden */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px; /* Reduced padding to move content up */
+  transition: transform 0.3s ease-in-out;
+}
 
     /* Sidebar links */
     .sidebar a {
       text-decoration: none;
-      color: white;
+      color: white ;
       font-size: 1.2rem;
       margin: 15px 0;
       padding: 10px;
       border-radius: 5px;
       transition: background-color 0.3s ease, color 0.3s ease;
-    }
+    } 
 
     .sidebar a:hover {
-      background-color: black;
-      color: white;
+      background-color:red ;
+      color: black;
     }
 
     /* Hamburger menu icon styling */
@@ -64,11 +63,12 @@
       z-index: 2;
     }
 
-    /* Hamburger menu lines */
     .hamburger-line {
       width: 30px;
       height: 3px;
-      background-color: white;
+       background-color: white;
+      transition: all 0.3s ease;
+      
     }
 
     /* Popup container and title animations */
@@ -133,18 +133,17 @@
 }
 
 
-    /* Profile Section */
-    .profile-section {
-      position: absolute;
-      top: 10%;
-      right: 1%;
-      text-align: left;
-      color: white;
-      max-width: 300px;
-      padding: 20px;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 10px;
-    }
+  .profile-section {
+  position: absolute;
+  top: 80px; /* Position it close to the top */
+  right: 20px; /* Position it close to the right */
+  text-align: left;
+  color: white;
+  max-width: 300px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
 
     .profile-pic {
       width: 150px;
@@ -177,6 +176,169 @@
 .about-section.visible {
   display: block;
 }
+    /* Media Query for Mobile Devices */
+    @media (max-width: 768px) {
+      /* Adjust the font sizes */
+      .name {
+        font-size: 2.5rem;
+      }
+
+      .title {
+        font-size: 1.2rem;
+      }
+
+     .profile-section {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  text-align: left;
+  color: white;
+  max-width: 300px;
+  padding: 10px; /* Reduced padding to decrease height */
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  height: auto; /* Adjust or set a specific height if desired */
+}
+
+
+      .profile-pic {
+        width: 80px;
+        height: 80px;
+      }
+
+      .profile-text {
+        font-size: 0.0rem;
+      }
+
+      /* Adjust sidebar */
+      .sidebar {
+        width: 80px;
+      }
+
+      .sidebar a {
+        font-size: 1rem;
+        margin: 10px 0;
+        padding: 8px;
+      }
+
+      /* Video styling */
+      #background-video {
+        width: 70%;
+        left: 9%;
+        margin: 20px auto;
+      }
+
+      /* Adjust layout */
+      body {
+        flex-direction: column;
+      }
+    }
+ /* Bottom text visible only on mobile view */
+/* Bottom text visible only on mobile view */
+.mobile-bottom-text {
+  display: none; /* Hidden by default */
+  padding: 10px 15px;
+  color: white;
+  text-align: center;
+  position: fixed;
+  bottom: 40px; /* Moves the text up from the bottom */
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds a shadow to make it stand out */
+  animation: slideIn 0.8s ease-out forwards, colorChange 4s ease-in-out infinite;
+ /* Color change animation every 2 seconds */
+  transform: translateY(20px); /* Initial position off-screen */
+}
+
+/* Show the text only on mobile screens */
+@media (max-width: 768px) {
+  .mobile-bottom-text {
+    display: block; /* Visible on mobile */
+  }
+}
+
+/* Keyframes for sliding in the text */
+@keyframes slideIn {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Keyframes for changing the background color */
+@keyframes colorChange {
+  0% {
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Warm colors */
+  }
+  25% {
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Blue tones */
+  }
+  50% {
+    background: linear-gradient(to right, #ff6a00, #ee0979); /* Red to pink */
+  }
+  75% {
+    background: linear-gradient(to right, #00c6ff, #0072ff); /* Blue gradient */
+  }
+  100% {
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Back to warm colors */
+  }
+}
+
+/* Show the text only on mobile screens */
+@media (max-width: 768px) {
+  .mobile-bottom-text {
+    display: block; /* Visible on mobile */
+  }
+}
+
+/* Keyframes for sliding in the text */
+@keyframes slideIn {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+/* Show the text only on mobile screens */
+@media (max-width: 768px) {
+  .mobile-bottom-text {
+    display: block;
+  }
+}
+
+
+
+/* Sidebar styling for mobile view */
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    top: -7%;
+    left: 0;
+    width: 80px; /* Reduced width for mobile view */
+    height: 75%; /* Reduced height for mobile view */
+    background-color: black ;
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    transition: transform 0.3s ease-in-out;
+  }
+}
+
     
     
   </style>
@@ -193,8 +355,7 @@
   <a href="index.html">Home</a> <!-- This link now reloads the current page -->
   <a href="about.html">About</a> 
   <a href="skill.html" >Skills</a>
-  <a href="Experence.html" >Experience</a>
-   <a href="resume.html" >Resume</a>
+  <a href="experience.html" >Experience</a>
   <a href="contact.html">Contact</a>
 </div>
 
@@ -213,14 +374,13 @@
   <!-- Profile section with image and text -->
   <div class="profile-section">
     <img src=" ./assets/pic.jpeg"class="profile-pic">
-    <p class="profile-text">
-      I’m incredibly excited about diving deeper into technology. I have a genuine passion for learning and exploring new skills, and I’m eager to tackle challenges, innovate, and grow in a dynamic tech environment. Technology constantly evolves, and I’m thrilled to be part of a field where there’s always something new to discover and master.
-    </p>
   </div>
   <!-- About Section that will scroll into view when clicked -->
-  <div class="about-section" id="about">
-    This is an about page
-  </div>
+ 
+  <div class="mobile-bottom-text">
+  I’m incredibly excited about diving deeper into technology. I have a genuine passion for learning and exploring new skills, and I’m eager to tackle challenges, innovate, and grow in a dynamic tech environment.
+</div>
+  
 
   <script>
     const titleElement = document.getElementById("title");

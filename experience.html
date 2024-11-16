@@ -20,25 +20,27 @@
     }
 
     /* Sidebar styling */
-    .sidebar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 200px;
-      height: 100%;
-      background-color: grey;
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding-top: 20px;
-      transition: transform 0.3s ease-in-out;
-    }
+   @media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    top: 1% ;
+    left: 0;
+    width: 90px;   
+    height: 75%;  
+    background-color: black;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    transition: transform 0.3s ease-in-out;
+  }
+  }
 
     .sidebar a {
       text-decoration: none;
       color: white;
-      font-size: 1.2rem;
+      font-size: 1rem;
       margin: 15px 0;
       padding: 10px;
       border-radius: 5px;
@@ -67,13 +69,12 @@
       background-color: white;
     }
 
-    /* Popup container styling */
-    .popup-container {
+   .popup-container {
       color: white;
       text-align: center;
       opacity: 0;
       position: absolute;
-      top: 50%;
+      top: 2%;
       left: 40%;
       transform: translate(-50%, -50%);
       animation: fadeIn 1.5s forwards ease-in-out;
@@ -87,13 +88,14 @@
     }
 
     .name {
-      font-size: 4rem;
+      font-size: 2rem;
       font-weight: bold;
       color: white;
       opacity: 0;
       transform: translateY(20px);
       animation: smoothExpand 2s forwards ease-in-out;
     }
+
 
     .title {
       font-size: 1.5rem;
@@ -118,64 +120,21 @@
       0% { opacity: 0; transform: translateY(20px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-
-    /* Profile Section */
-    .profile-section {
-      position: absolute;
-      top: 10%;
-      right: 1%;
-      text-align: left;
-      color: white;
-      max-width: 300px;
-      padding: 20px;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 10px;
-    }
-
-    .profile-pic {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 4px solid white;
-      margin-bottom: 15px;
-    }
-
-    .profile-text {
-      font-size: 1rem;
-      line-height: 1.5;
-      color: white;
-      margin-top: 10px;
-    }
-
-    /* About section */
-    .about-section {
-      display: none;
-      padding: 20px;
-      background-color: rgba(0, 0, 0, 0.8);
-      color: white;
-      border-radius: 10px;
-      margin-top: 30px;
-      width: 80%;
-      max-width: 600px;
-      text-align: center;
-    }
-
-    .about-section.visible {
-      display: block;
-    }
     /* Skills Section */
 .skills-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-  max-width: 1000px;
+  gap: 20px;
+  max-width: 600px;
   margin: 100px auto 10px auto;
+  margin-right: 5%;
+  animation: fadeIn 1s ease-in-out;
   padding: 0px;
 }
 
 .skill-card {
   background-color: #333;
-  padding: 20px;
+  padding: 10px;
   border-radius: 8px;
   transition: transform 0.3s, background-color 0.3s;
   cursor: pointer;
@@ -193,13 +152,14 @@
 }
 
 .skill-card h3 {
-  font-size: 1.2rem;
+  font-size: 1.0rem;
   margin-bottom: 10px;
   color: #f1f1f1;
+  transition: color 0.3s ease-in-out;
 }
 
 .skill-card p {
-  font-size: 0.9rem;
+  font-size: 0.5rem;
   line-height: 1.6;
   color: #ccc;
 }
@@ -244,11 +204,16 @@
 }
 
 /* Add responsiveness */
-@media screen and (max-width: 768px) {
-  .skills-list {
-    grid-template-columns: 1fr;
-  }
-}
+ @media screen and (max-width: 768px) {
+   .skills-list {
+        grid-template-columns: 1fr;
+        max-width: 65%;
+        max-height: 500px;
+        margin-right: 5%;  /* Adjust max height for mobile */
+        overflow-y: auto; 
+         /* Allow scrolling */
+      }
+    }
     
   </style>
 </head>
@@ -266,7 +231,6 @@
     <a href="about.html">About</a>
     <a href="skill.html">Skills</a>
     <a href="experience.html">Experience</a>
-     <a href="resume.html" >Resume</a>
     <a href="contact.html">Contact</a>
   </div>
 
@@ -275,10 +239,7 @@
     <div class="name">Experience</div>
   </div>
 
-  <!-- Profile section with image and text -->
-  <div class="profile-section">
-     <img src=" ./assets/pic.jpeg"class="profile-pic" alt="Profile Picture" class="profile-pic">
-  </div>
+ 
   <!-- Skills Section -->
 <div class="skills-list">
 <div class="skill-card" onclick="showCertificate('skill6')">
